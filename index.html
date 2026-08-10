@@ -71,9 +71,10 @@
     margin: 0 auto;
     padding: 0.7rem 1.1rem;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.7rem;
+    gap: 0.6rem;
   }
 
   .brand{
@@ -162,9 +163,9 @@
     background: var(--red);
     color: #fff;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: clamp(0.72rem, 3vw, 0.85rem);
     text-decoration: none;
-    padding: 0.5rem 0.9rem;
+    padding: 0.5rem 0.8rem;
     border-radius: 999px;
     white-space: nowrap;
   }
@@ -650,42 +651,6 @@
     color: #9C9284;
     margin-top: 0.8rem;
   }
-
-  body{
-    padding-bottom: 56px;
-  }
-
-  .sticky-contact{
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 50;
-    display: flex;
-    background: var(--ink);
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: env(safe-area-inset-bottom, 0);
-  }
-
-  .sticky-contact a{
-    flex: 1 1 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.85rem;
-    padding: 0.85rem 0.5rem;
-  }
-
-  .sticky-contact a:first-child{
-    border-right: 1px solid rgba(255,255,255,0.12);
-    background: var(--red);
-  }
-  .sticky-contact a:first-child:hover{ background: var(--red-deep); }
-  .sticky-contact a:last-child:hover{ background: rgba(255,255,255,0.08); }
 </style>
 </head>
 <body>
@@ -1008,17 +973,6 @@
   <p class="addr"><a href="mailto:krambuabensin@hotmail.com" style="color:inherit;">krambuabensin@hotmail.com</a></p>
   <p class="copyright">© 2026 Krambua Bensin &amp; Storkiosk. <span data-i18n="rightsReserved">Alle rettar reservert.</span></p>
 </footer>
-
-<div class="sticky-contact">
-  <a href="tel:+4753756888">
-    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    <span data-i18n="stickyCall">Ring oss</span>
-  </a>
-  <a href="mailto:krambuabensin@hotmail.com">
-    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
-    <span data-i18n="stickyMail">Send e-post</span>
-  </a>
-</div>
 
 <script>
 (function(){
