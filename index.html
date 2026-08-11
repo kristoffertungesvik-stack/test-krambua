@@ -215,6 +215,33 @@
     border-color: var(--red);
   }
 
+  nav.primary-nav a.nav-deal{
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    color: #fff;
+    background: var(--mustard);
+    border: 1px solid var(--mustard);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    margin-left: auto;
+    box-shadow: 0 2px 6px rgba(196,136,42,0.35);
+  }
+  nav.primary-nav a.nav-deal:hover, nav.primary-nav a.nav-deal:focus-visible{
+    background: #A9741F;
+    border-color: #A9741F;
+    transform: translateY(-1px);
+    outline: none;
+  }
+
   /* ---------- Hero ---------- */
 
   .hero{
@@ -300,17 +327,6 @@
     color: #fff;
     background: var(--mustard);
     border-color: var(--mustard);
-  }
-
-  nav.sub-nav a.nav-deal{
-    color: var(--red-deep);
-    border-color: var(--red-deep);
-    background: #fff;
-  }
-  nav.sub-nav a.nav-deal:hover, nav.sub-nav a.nav-deal:focus-visible{
-    color: #fff;
-    background: var(--red-deep);
-    border-color: var(--red-deep);
   }
 
   .category-pager{
@@ -691,6 +707,10 @@
     <button type="button" class="top-tab-trigger active" data-toptab="tab-meny" data-i18n="navMenu">Meny</button>
     <button type="button" class="top-tab-trigger" data-toptab="tab-informasjon" data-i18n="navInfo">Informasjon</button>
     <button type="button" class="top-tab-trigger" data-toptab="tab-omoss" data-i18n="navAbout">Om oss</button>
+    <a href="tilbod.html" class="nav-deal">
+      <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M11.5 2s3 3.5 3 7c0 1.5-1 2.5-2 2.5s-2-1-2-2.5c-1.5 1-3 3-3 5.5a5.5 5.5 0 0 0 11 0c0-4.5-4-8-7-12.5z"/></svg>
+      <span data-i18n="navDeal">Vekas tilbod</span>
+    </a>
   </nav>
 </header>
 
@@ -708,7 +728,6 @@
       <button type="button" class="tab-trigger" data-tab="rullar" data-i18n="navRolls">Rullar &amp; tallerkenar</button>
       <button type="button" class="tab-trigger" data-tab="brodmat" data-i18n="navBread">Brødmat &amp; smårettar</button>
       <a href="allergener.html" class="nav-allergens" data-i18n="navAllergens">Allergenar</a>
-      <a href="tilbod.html" class="nav-deal" data-i18n="navDeal">Vekas tilbod</a>
     </nav>
 
     <div class="category-pager">
