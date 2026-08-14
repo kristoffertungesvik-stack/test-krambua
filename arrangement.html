@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vekas tilbod – Krambua Bensin &amp; Storkiosk</title>
-<meta name="description" content="Vekas tilbod hos Krambua Bensin &amp; Storkiosk i Skånevik.">
-<link rel="canonical" href="https://krambua-skånevik.no/tilbod.html">
+<title>Arrangement – Krambua Bensin &amp; Storkiosk</title>
+<meta name="description" content="Komande arrangement hos Krambua Bensin &amp; Storkiosk i Skånevik.">
+<link rel="canonical" href="https://krambua-skånevik.no/arrangement.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Krambua Bensin &amp; Storkiosk">
-<meta property="og:title" content="Vekas tilbod – Krambua Bensin &amp; Storkiosk">
-<meta property="og:description" content="Vekas tilbod hos Krambua Bensin &amp; Storkiosk i Skånevik.">
-<meta property="og:url" content="https://krambua-skånevik.no/tilbod.html">
+<meta property="og:title" content="Arrangement – Krambua Bensin &amp; Storkiosk">
+<meta property="og:description" content="Komande arrangement hos Krambua Bensin &amp; Storkiosk i Skånevik.">
+<meta property="og:url" content="https://krambua-skånevik.no/arrangement.html">
 <meta property="og:image" content="https://krambua-skånevik.no/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -126,27 +126,29 @@
     padding: 2.4rem 1.2rem 1rem;
   }
 
-  .week-note{
+  .empty-note{
     text-align: center;
-    font-size: 0.9rem;
     color: var(--ink-soft);
-    margin: 0 0 2rem;
+    font-size: 0.95rem;
+    padding: 2rem 1rem;
+    border: 1px dashed var(--line);
+    border-radius: 12px;
   }
 
-  /* ---------- Deal card ---------- */
+  /* ---------- Event card ---------- */
 
-  .deal-card{
+  .event-card{
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 16px;
     overflow: hidden;
-    margin-bottom: 1.6rem;
+    margin-bottom: 2.2rem;
     box-shadow: 0 4px 14px rgba(0,0,0,0.05);
   }
 
-  .deal-badge{
+  .event-badge{
     display: inline-block;
-    background: var(--red);
+    background: var(--mustard);
     color: #fff;
     font-weight: 700;
     font-size: 0.72rem;
@@ -156,59 +158,45 @@
     border-radius: 0 0 10px 0;
   }
 
-  .deal-body{
+  .event-body{
     padding: 0.4rem 1.5rem 1.6rem;
   }
 
-  .deal-name{
+  .event-name{
     font-family: 'Fraunces', serif;
     font-weight: 600;
     font-size: clamp(1.3rem, 3.6vw, 1.6rem);
-    margin: 0.4rem 0 0.5rem;
+    margin: 0.4rem 0 0.9rem;
     color: var(--ink);
   }
 
-  .deal-desc{
+  .event-meta{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .event-meta-row{
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.92rem;
+    color: var(--ink);
+  }
+  .event-meta-row svg{ color: var(--mustard); flex: 0 0 auto; }
+
+  .event-desc{
     font-size: 0.95rem;
     color: var(--ink-soft);
     line-height: 1.6;
-    margin: 0 0 1.1rem;
+    margin: 0 0 0.8rem;
   }
 
-  .deal-prices{
-    display: flex;
-    align-items: baseline;
-    gap: 0.7rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .deal-old-price{
-    font-size: 1.1rem;
-    color: var(--ink-soft);
-    text-decoration: line-through;
-    text-decoration-color: var(--red);
-  }
-
-  .deal-new-price{
-    font-family: 'Fraunces', serif;
-    font-weight: 700;
-    font-size: clamp(1.6rem, 5vw, 2.1rem);
+  .event-prize{
+    font-size: 0.88rem;
+    font-weight: 600;
     color: var(--red-deep);
-  }
-
-  .deal-valid{
-    font-size: 0.82rem;
-    font-style: italic;
-    color: var(--ink-soft);
-  }
-
-  .empty-note{
-    text-align: center;
-    color: var(--ink-soft);
-    font-size: 0.95rem;
-    padding: 2rem 1rem;
-    border: 1px dashed var(--line);
-    border-radius: 12px;
   }
 
   footer{
@@ -254,122 +242,76 @@
 </header>
 
 <section class="hero">
-  <p class="tagline">Vekas tilbod</p>
+  <p class="tagline">Arrangement</p>
 </section>
 
 <main>
-  <p class="week-note" id="weekNote">Gjeld veke …</p>
+  <!--
+    ============================================================
+    SLIK OPPDATERER DU ARRANGEMENTET:
 
-  <div id="dealContainer"></div>
+    Fyll ut objektet "event" under. Set "hideAfter" til dato og
+    klokkeslett (norsk lokal tid) når arrangementet skal forsvinne
+    frå sida automatisk – t.d. nokre timar etter at det er ferdig.
+    Sida sjekkar dette sjølv kvar gong nokon opnar ho, du treng
+    ikkje gjere noko manuelt etterpå.
 
-  <p class="empty-note" id="emptyNote" style="display:none;">Ingen tilbod akkurat no – sjekk innom igjen litt seinare!</p>
+    Skal det ikkje visast noko arrangement for tida, set
+    event = null.
+    ============================================================ -->
+
+  <div id="eventContainer"></div>
+  <p class="empty-note" id="emptyNote" style="display:none;">Ingen komande arrangement no – følg med her!</p>
 </main>
 
 <script>
-  /* ============================================================
-     SLIK LEGG DU INN TILBOD:
+  var event = {
+    name: "Fiskekonkurranse",
+    date: "15. august, kl. 13.30–15.30",
+    place: "Krambua, sentrumsområdet",
+    age: "For born t.o.m. 15 år",
+    desc: "Fisk frå land, innanfor sentrumsområdet. Premiar for mest fisk og tyngste fisk. Gjeldande fiskereglar og minstemål må følgjast, og foreldre har ansvar for eigne born under konkurransen.",
+    prize: "Gratis å delta – alle deltakarar får premie, og vinnarane får goodiebag!",
+    hideAfter: "2026-08-15T18:00:00"
+  };
 
-     Legg til eit nytt objekt i "offers"-lista under, kor som
-     helst i lista. Sida vel sjølv automatisk kva tilbod som
-     skal visast kvar veke, og byter til neste når veka skiftar
-     – du treng ikkje gjere noko anna enn å fylle på lista med
-     nye idear etter kvart. Har du 6 tilbod i lista, tek det
-     omtrent 6 veker før same tilbod dukkar opp igjen (med 2
-     tilbod synlege om gongen).
-
-     Vil du styre nøyaktig kor mange tilbod som vert vist
-     samstundes, endre talet i OFFERS_PER_WEEK lenger ned.
-
-     name  = namnet på tilbodet
-     desc  = kort skildring
-     old   = ordinær pris (valfritt – kan stå tom "")
-     price = tilbodspris
-     valid = liten tekst om gyldigheit (valfritt)
-     ============================================================ */
-
-  var offers = [
-    {
-      name: "Skyraceburger 330 g m/ost og bacon",
-      desc: "Grilla med kjærleik – saftig burger med ost, bacon, salat, tomat og raudlauk. Perfekt etter Skånevik Sky Race! Ønskjer du pommes attåt, kun +45,-.",
-      old: "",
-      price: "199,-",
-      valid: "Skyrace-helga"
-    },
-    {
-      name: "Powerade",
-      desc: "Lad deg opp – Lemon eller Mountain Blast.",
-      old: "",
-      price: "25,-",
-      valid: ""
-    }
-  ];
-
-  var OFFERS_PER_WEEK = 2;
-
-  var months = ["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember"];
-
-  function getISOWeek(date){
-    var d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-    var dayNum = d.getUTCDay() || 7;
-    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-    var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-    return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-  }
-
-  function getWeekRange(date){
-    var day = date.getDay() || 7;
-    var monday = new Date(date);
-    monday.setDate(date.getDate() - day + 1);
-    var sunday = new Date(monday);
-    sunday.setDate(monday.getDate() + 6);
-    function fmt(d){ return d.getDate() + ". " + months[d.getMonth()]; }
-    var mondayStr = monday.getMonth() === sunday.getMonth() ? monday.getDate() + "." : fmt(monday);
-    return mondayStr + "–" + fmt(sunday) + " " + sunday.getFullYear();
-  }
-
-  function renderOffers(){
-    var container = document.getElementById('dealContainer');
-    var weekNote = document.getElementById('weekNote');
+  function renderEvent(){
+    var container = document.getElementById('eventContainer');
     var emptyNote = document.getElementById('emptyNote');
 
-    var today = new Date();
-    var isSundayAfter21 = today.getDay() === 0 && today.getHours() >= 21;
+    var hidden = !event;
+    if (event && event.hideAfter){
+      var cutoff = new Date(event.hideAfter);
+      if (new Date() >= cutoff) hidden = true;
+    }
 
-    if (!offers.length || isSundayAfter21){
-      weekNote.style.display = 'none';
+    if (hidden){
       container.style.display = 'none';
-      emptyNote.textContent = isSundayAfter21
-        ? "Denne vekas tilbod er avslutta – nye tilbod kjem måndag!"
-        : "Ingen tilbod akkurat no – sjekk innom igjen litt seinare!";
       emptyNote.style.display = 'block';
       return;
     }
 
-    var week = getISOWeek(today);
-    weekNote.textContent = "Gjeld veke " + week + " (" + getWeekRange(today) + ")";
+    var iconCal = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+    var iconPin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+    var iconAge = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
 
-    var count = Math.min(OFFERS_PER_WEEK, offers.length);
-    var startIdx = week % offers.length;
-    var html = '';
-    for (var i = 0; i < count; i++){
-      var o = offers[(startIdx + i) % offers.length];
-      html += '<div class="deal-card">' +
-        '<span class="deal-badge">Tilbod</span>' +
-        '<div class="deal-body">' +
-        '<p class="deal-name">' + o.name + '</p>' +
-        (o.desc ? '<p class="deal-desc">' + o.desc + '</p>' : '') +
-        '<div class="deal-prices">' +
-        (o.old ? '<span class="deal-old-price">' + o.old + '</span>' : '') +
-        '<span class="deal-new-price">' + o.price + '</span>' +
-        '</div>' +
-        (o.valid ? '<p class="deal-valid">' + o.valid + '</p>' : '') +
-        '</div>' +
-        '</div>';
-    }
-    container.innerHTML = html;
+    container.innerHTML =
+      '<div class="event-card">' +
+      '<span class="event-badge">Arrangement</span>' +
+      '<div class="event-body">' +
+      '<p class="event-name">' + event.name + '</p>' +
+      '<div class="event-meta">' +
+      '<div class="event-meta-row">' + iconCal + '<span>' + event.date + '</span></div>' +
+      '<div class="event-meta-row">' + iconPin + '<span>' + event.place + '</span></div>' +
+      (event.age ? '<div class="event-meta-row">' + iconAge + '<span>' + event.age + '</span></div>' : '') +
+      '</div>' +
+      (event.desc ? '<p class="event-desc">' + event.desc + '</p>' : '') +
+      (event.prize ? '<p class="event-prize">' + event.prize + '</p>' : '') +
+      '</div>' +
+      '</div>';
   }
 
-  renderOffers();
+  renderEvent();
 </script>
 
 <footer>

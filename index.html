@@ -658,6 +658,79 @@
     display: block;
   }
 
+  /* ---------- Arrangement tab ---------- */
+
+  .event-card{
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  }
+
+  .event-badge{
+    display: inline-block;
+    background: var(--mustard);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.9rem;
+    border-radius: 0 0 10px 0;
+  }
+
+  .event-body{
+    padding: 0.4rem 1.5rem 1.6rem;
+  }
+
+  .event-name{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(1.3rem, 3.6vw, 1.6rem);
+    margin: 0.4rem 0 0.9rem;
+    color: var(--ink);
+  }
+
+  .event-meta{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .event-meta-row{
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.92rem;
+    color: var(--ink);
+  }
+  .event-meta-row svg{ color: var(--mustard); flex: 0 0 auto; }
+
+  .event-desc{
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0 0 0.8rem;
+  }
+
+  .event-prize{
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--red-deep);
+  }
+
+  .empty-note{
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    padding: 2rem 1rem;
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+  }
+
   /* ---------- Footer ---------- */
 
   footer{
@@ -707,6 +780,7 @@
     <button type="button" class="top-tab-trigger active" data-toptab="tab-meny" data-i18n="navMenu">Meny</button>
     <button type="button" class="top-tab-trigger" data-toptab="tab-informasjon" data-i18n="navInfo">Informasjon</button>
     <button type="button" class="top-tab-trigger" data-toptab="tab-omoss" data-i18n="navAbout">Om oss</button>
+    <button type="button" class="top-tab-trigger" data-toptab="tab-arrangement" data-i18n="navEvent">Arrangement</button>
     <a href="tilbod.html" class="nav-deal">
       <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M11.5 2s3 3.5 3 7c0 1.5-1 2.5-2 2.5s-2-1-2-2.5c-1.5 1-3 3-3 5.5a5.5 5.5 0 0 0 11 0c0-4.5-4-8-7-12.5z"/></svg>
       <span data-i18n="navDeal">Vekas tilbod</span>
@@ -998,6 +1072,11 @@
     </div>
   </section>
 
+  <section class="top-tab" id="tab-arrangement">
+    <div id="eventContainer"></div>
+    <p class="empty-note" id="emptyEventNote" style="display:none;">Ingen komande arrangement no – følg med her!</p>
+  </section>
+
 </main>
 
 <footer>
@@ -1068,9 +1147,11 @@
       navMenu: "Meny",
       navInfo: "Informasjon",
       navAbout: "Om oss",
+      navEvent: "Arrangement",
       infoHoursTitle: "Opningstider",
       infoContactTitle: "Kontakt",
       infoAllergensCta: "Sjå allergenar",
+      infoEventCta: "Kommande arrangement",
       aboutHeading: "Velkomen til Krambua i Skånevik",
       aboutSub: "Eit naturleg stopp ved sjøen – midt i Skånevik.",
       aboutP1: "Krambua ligg flott til ved sjøen og er ein lokal møteplass for både fastbuande, hyttefolk, båtturistar og andre som er på farten.",
@@ -1148,9 +1229,11 @@
       navMenu: "Menu",
       navInfo: "Information",
       navAbout: "About us",
+      navEvent: "Event",
       infoHoursTitle: "Opening hours",
       infoContactTitle: "Contact",
       infoAllergensCta: "View allergens",
+      infoEventCta: "Upcoming event",
       aboutHeading: "Welcome to Krambua in Skånevik",
       aboutSub: "A natural stop by the sea – right in the middle of Skånevik.",
       aboutP1: "Krambua sits right by the water and is a local gathering place for residents, cabin owners, boaters, and anyone passing through.",
@@ -1228,9 +1311,11 @@
       navMenu: "Menü",
       navInfo: "Information",
       navAbout: "Über uns",
+      navEvent: "Veranstaltung",
       infoHoursTitle: "Öffnungszeiten",
       infoContactTitle: "Kontakt",
       infoAllergensCta: "Allergene ansehen",
+      infoEventCta: "Kommende Veranstaltung",
       aboutHeading: "Willkommen bei Krambua in Skånevik",
       aboutSub: "Ein natürlicher Halt am Meer – mitten in Skånevik.",
       aboutP1: "Krambua liegt wunderschön am Wasser und ist ein beliebter Treffpunkt für Einheimische, Hüttenbesitzer, Bootstouristen und alle, die unterwegs sind.",
@@ -1308,9 +1393,11 @@
       navMenu: "Menu",
       navInfo: "Informations",
       navAbout: "À propos",
+      navEvent: "Événement",
       infoHoursTitle: "Horaires d'ouverture",
       infoContactTitle: "Contact",
       infoAllergensCta: "Voir les allergènes",
+      infoEventCta: "Événement à venir",
       aboutHeading: "Bienvenue chez Krambua à Skånevik",
       aboutSub: "Une halte naturelle au bord de la mer – en plein cœur de Skånevik.",
       aboutP1: "Krambua est magnifiquement situé au bord de l'eau et constitue un lieu de rencontre local pour les habitants, les propriétaires de chalets, les plaisanciers et tous ceux de passage.",
@@ -1388,9 +1475,11 @@
       navMenu: "Menu",
       navInfo: "Informazioni",
       navAbout: "Chi siamo",
+      navEvent: "Evento",
       infoHoursTitle: "Orari di apertura",
       infoContactTitle: "Contatti",
       infoAllergensCta: "Vedi allergeni",
+      infoEventCta: "Prossimo evento",
       aboutHeading: "Benvenuti da Krambua a Skånevik",
       aboutSub: "Una sosta naturale sul mare – nel cuore di Skånevik.",
       aboutP1: "Krambua si trova in una splendida posizione sul mare ed è un punto d'incontro locale per residenti, proprietari di baite, diportisti e chiunque sia di passaggio.",
@@ -1414,7 +1503,7 @@
   var htmlLangMap = { nn: "nn", en: "en", de: "de", fr: "fr", it: "it" };
   var flagMap = { nn: "🇳🇴", en: "🇬🇧", de: "🇩🇪", fr: "🇫🇷", it: "🇮🇹" };
   var currentLang = 'nn';
-  var heroTaglineKeys = { 'tab-meny': 'tagline', 'tab-informasjon': 'navInfo', 'tab-omoss': 'navAbout' };
+  var heroTaglineKeys = { 'tab-meny': 'tagline', 'tab-informasjon': 'navInfo', 'tab-omoss': 'navAbout', 'tab-arrangement': 'navEvent' };
 
   function updateHeroTagline(){
     var activePanel = document.querySelector('.top-tab.active');
@@ -1543,6 +1632,65 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+
+  // Arrangement tab
+  /* ============================================================
+     SLIK OPPDATERER DU ARRANGEMENTET:
+
+     Fyll ut objektet "event" under. Set "hideAfter" til dato og
+     klokkeslett (norsk lokal tid) når arrangementet skal forsvinne
+     frå sida automatisk. Skal det ikkje visast noko arrangement
+     for tida, set event = null.
+     ============================================================ */
+
+  var event = {
+    name: "Fiskekonkurranse",
+    date: "15. august, kl. 13.30–15.30",
+    place: "Krambua, sentrumsområdet",
+    age: "For born t.o.m. 15 år",
+    desc: "Fisk frå land, innanfor sentrumsområdet. Premiar for mest fisk og tyngste fisk. Gjeldande fiskereglar og minstemål må følgjast, og foreldre har ansvar for eigne born under konkurransen.",
+    prize: "Gratis å delta – alle deltakarar får premie, og vinnarane får goodiebag!",
+    hideAfter: "2026-08-15T18:00:00"
+  };
+
+  function renderEvent(){
+    var container = document.getElementById('eventContainer');
+    var emptyNote = document.getElementById('emptyEventNote');
+    if (!container || !emptyNote) return;
+
+    var hidden = !event;
+    if (event && event.hideAfter){
+      var cutoff = new Date(event.hideAfter);
+      if (new Date() >= cutoff) hidden = true;
+    }
+
+    if (hidden){
+      container.style.display = 'none';
+      emptyNote.style.display = 'block';
+      return;
+    }
+
+    var iconCal = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+    var iconPin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+    var iconAge = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
+
+    container.innerHTML =
+      '<div class="event-card">' +
+      '<span class="event-badge">Arrangement</span>' +
+      '<div class="event-body">' +
+      '<p class="event-name">' + event.name + '</p>' +
+      '<div class="event-meta">' +
+      '<div class="event-meta-row">' + iconCal + '<span>' + event.date + '</span></div>' +
+      '<div class="event-meta-row">' + iconPin + '<span>' + event.place + '</span></div>' +
+      (event.age ? '<div class="event-meta-row">' + iconAge + '<span>' + event.age + '</span></div>' : '') +
+      '</div>' +
+      (event.desc ? '<p class="event-desc">' + event.desc + '</p>' : '') +
+      (event.prize ? '<p class="event-prize">' + event.prize + '</p>' : '') +
+      '</div>' +
+      '</div>';
+  }
+
+  renderEvent();
 })();
 </script>
 </body>
